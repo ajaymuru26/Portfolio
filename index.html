@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ajay Murugappan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --blue: #a8d8ea;
+      --blue-dark: #6bbcd6;
+      --blue-deep: #1a4a5e;
+      --pink: #f7a8c4;
+      --pink-dark: #f07fa4;
+      --pink-deep: #8b1a42;
+      --white: #fafcff;
+      --black: #0d1117;
+      --gray: #6b7280;
+      --light-gray: #f0f4f8;
+      --border: #dde8f0;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--black); overflow-x: hidden; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--white); border-bottom: 2px solid var(--blue);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0 48px; height: 64px;
+    }
+    .nav-logo { font-family: 'Space Mono', monospace; font-weight: 700; font-size: 16px; color: var(--blue-deep); }
+    .nav-logo span { color: var(--pink-dark); }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a { font-size: 13px; font-weight: 500; text-decoration: none; color: var(--gray); letter-spacing: 1.5px; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--pink-dark); }
+
+    #home { padding-top: 64px; min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; }
+
+    .hero-left {
+      background: var(--blue); display: flex; flex-direction: column;
+      justify-content: center; padding: 80px 60px; position: relative; overflow: hidden;
+    }
+    .hero-left::before {
+      content: 'AM'; position: absolute; bottom: -40px; left: -20px;
+      font-family: 'Playfair Display', serif; font-size: 280px; font-weight: 900;
+      color: rgba(255,255,255,0.15); line-height: 1; pointer-events: none;
+    }
+    .hero-tag {
+      font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--blue-deep); background: white;
+      display: inline-block; padding: 6px 14px; margin-bottom: 28px; border: 2px solid var(--blue-deep);
+    }
+    .hero-name { font-family: 'Playfair Display', serif; font-size: 72px; font-weight: 900; line-height: 1.0; color: var(--blue-deep); margin-bottom: 24px; }
+    .hero-sub { font-size: 15px; font-weight: 300; line-height: 1.7; color: var(--blue-deep); max-width: 360px; margin-bottom: 40px; }
+    .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    .btn-primary { background: var(--blue-deep); color: white; padding: 14px 28px; font-size: 13px; font-weight: 500; text-decoration: none; letter-spacing: 1px; text-transform: uppercase; border: 2px solid var(--blue-deep); transition: all 0.2s; cursor: pointer; display: inline-block; }
+    .btn-primary:hover { background: transparent; color: var(--blue-deep); }
+    .btn-secondary { background: transparent; color: var(--blue-deep); padding: 14px 28px; font-size: 13px; font-weight: 500; text-decoration: none; letter-spacing: 1px; text-transform: uppercase; border: 2px solid var(--blue-deep); transition: all 0.2s; cursor: pointer; display: inline-block; }
+    .btn-secondary:hover { background: var(--blue-deep); color: white; }
+
+    .hero-right { background: var(--white); display: flex; flex-direction: column; justify-content: center; padding: 80px 60px; border-left: 2px solid var(--blue); }
+    .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 40px; }
+    .stat-box { background: var(--light-gray); padding: 28px 24px; border: 2px solid var(--border); }
+    .stat-box.pink { background: var(--pink); border-color: var(--pink-dark); }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 700; color: var(--blue-deep); line-height: 1; }
+    .stat-box.pink .stat-num { color: var(--pink-deep); }
+    .stat-label { font-size: 12px; font-weight: 500; color: var(--gray); letter-spacing: 1px; text-transform: uppercase; margin-top: 6px; }
+    .stat-box.pink .stat-label { color: var(--pink-deep); }
+
+    .hero-links { display: flex; flex-direction: column; gap: 12px; }
+    .hero-link { display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--gray); text-decoration: none; padding: 10px 0; border-bottom: 1px solid var(--border); transition: color 0.2s; }
+    .hero-link:hover { color: var(--pink-dark); }
+    .hero-link-icon { width: 32px; height: 32px; background: var(--blue); display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', monospace; font-size: 10px; font-weight: 700; color: var(--blue-deep); flex-shrink: 0; }
+
+    section { padding: 100px 0; }
+    .section-inner { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
+    .section-label { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--pink-dark); margin-bottom: 12px; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 900; color: var(--blue-deep); line-height: 1.1; margin-bottom: 48px; }
+
+    #about { background: var(--light-gray); border-top: 2px solid var(--blue); border-bottom: 2px solid var(--blue); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+    .about-text p { font-size: 16px; font-weight: 300; line-height: 1.8; color: var(--black); margin-bottom: 20px; }
+    .about-text p strong { font-weight: 500; color: var(--blue-deep); }
+    .about-details { display: flex; flex-direction: column; gap: 0; }
+    .detail-row { display: flex; padding: 16px 0; border-bottom: 1px solid var(--border); gap: 20px; }
+    .detail-key { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gray); width: 110px; flex-shrink: 0; padding-top: 2px; }
+    .detail-val { font-size: 14px; font-weight: 400; color: var(--black); }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+    .tag { font-family: 'Space Mono', monospace; font-size: 11px; padding: 5px 12px; border: 1.5px solid var(--blue-dark); color: var(--blue-deep); background: white; }
+    .tag.pink { border-color: var(--pink-dark); color: var(--pink-deep); }
+
+    #experience { background: var(--white); }
+    .exp-list { display: flex; flex-direction: column; gap: 0; }
+    .exp-item { display: grid; grid-template-columns: 200px 1fr; gap: 40px; padding: 40px 0; border-bottom: 2px solid var(--border); }
+    .exp-item:first-child { border-top: 2px solid var(--border); }
+    .exp-meta { display: flex; flex-direction: column; gap: 8px; }
+    .exp-company { font-family: 'Space Mono', monospace; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--blue-deep); }
+    .exp-date { font-size: 12px; color: var(--gray); }
+    .exp-dot { width: 10px; height: 10px; background: var(--pink); border: 2px solid var(--pink-dark); margin-top: 4px; }
+    .exp-title { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--black); margin-bottom: 16px; }
+    .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .exp-bullets li { font-size: 14px; font-weight: 300; line-height: 1.7; color: var(--black); padding-left: 20px; position: relative; }
+    .exp-bullets li::before { content: ''; position: absolute; left: 0; top: 10px; width: 8px; height: 2px; background: var(--pink-dark); }
+
+    #projects { background: var(--blue-deep); }
+    #projects .section-title { color: var(--blue); }
+    #projects .section-label { color: var(--pink); }
+    .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+    .project-card { background: #1e5a73; padding: 40px 36px; position: relative; overflow: hidden; transition: background 0.2s; }
+    .project-card:hover { background: #245f7a; }
+    .project-card::after { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--pink); }
+    .project-num { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 2px; color: var(--pink); margin-bottom: 16px; }
+    .project-name { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: white; margin-bottom: 12px; line-height: 1.3; }
+    .project-stack { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 1px; color: var(--blue); margin-bottom: 16px; text-transform: uppercase; }
+    .project-desc { font-size: 13px; font-weight: 300; line-height: 1.7; color: rgba(255,255,255,0.75); }
+    .project-highlight { display: inline-block; margin-top: 16px; font-family: 'Space Mono', monospace; font-size: 11px; padding: 4px 10px; background: var(--pink); color: var(--pink-deep); font-weight: 700; }
+
+    #skills { background: var(--pink); border-top: 2px solid var(--pink-dark); border-bottom: 2px solid var(--pink-dark); }
+    #skills .section-title { color: var(--pink-deep); }
+    #skills .section-label { color: var(--blue-deep); }
+    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .skill-group { background: white; padding: 28px 24px; border: 2px solid var(--pink-dark); }
+    .skill-group-title { font-family: 'Space Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--pink-deep); margin-bottom: 16px; padding-bottom: 12px; border-bottom: 2px solid var(--pink); }
+    .skill-list { display: flex; flex-wrap: wrap; gap: 8px; }
+    .skill-chip { font-size: 12px; font-weight: 400; padding: 4px 10px; background: var(--light-gray); color: var(--black); border: 1px solid var(--border); }
+
+    #goals { background: var(--white); }
+    .goals-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+    .goals-timeline { display: flex; flex-direction: column; gap: 0; }
+    .timeline-item { display: flex; gap: 24px; padding-bottom: 36px; }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-left { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+    .timeline-dot { width: 14px; height: 14px; background: var(--blue); border: 3px solid var(--blue-deep); flex-shrink: 0; }
+    .timeline-line { width: 2px; flex: 1; background: var(--blue); margin-top: 4px; }
+    .timeline-year { font-family: 'Space Mono', monospace; font-size: 11px; font-weight: 700; color: var(--blue-deep); letter-spacing: 1px; margin-bottom: 6px; }
+    .timeline-text { font-size: 14px; font-weight: 300; line-height: 1.7; color: var(--black); }
+    .goals-steps { display: flex; flex-direction: column; gap: 20px; }
+    .step-item { display: flex; gap: 20px; align-items: flex-start; padding: 20px; background: var(--light-gray); border-left: 4px solid var(--blue-dark); }
+    .step-num { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900; color: var(--blue); line-height: 1; flex-shrink: 0; }
+    .step-text { font-size: 14px; font-weight: 300; line-height: 1.7; color: var(--black); padding-top: 8px; }
+
+    #resume { background: var(--light-gray); border-top: 2px solid var(--border); }
+    .resume-box { background: white; border: 2px solid var(--border); padding: 60px; text-align: center; max-width: 600px; margin: 0 auto; }
+    .resume-icon { font-family: 'Playfair Display', serif; font-size: 80px; color: var(--blue); line-height: 1; margin-bottom: 16px; }
+    .resume-box h3 { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--blue-deep); margin-bottom: 12px; }
+    .resume-box p { font-size: 14px; font-weight: 300; color: var(--gray); line-height: 1.7; margin-bottom: 32px; }
+
+    #contact { background: var(--black); }
+    #contact .section-title { color: white; }
+    #contact .section-label { color: var(--pink); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+    .contact-text { font-size: 16px; font-weight: 300; color: rgba(255,255,255,0.6); line-height: 1.8; }
+    .contact-links { display: flex; flex-direction: column; gap: 2px; }
+    .contact-link { display: flex; align-items: center; gap: 16px; padding: 20px 24px; background: #1a1f2e; text-decoration: none; border-left: 4px solid transparent; transition: all 0.2s; }
+    .contact-link:hover { border-left-color: var(--pink); background: #1e2436; }
+    .contact-link-icon { font-family: 'Space Mono', monospace; font-size: 10px; font-weight: 700; letter-spacing: 1px; color: var(--pink); width: 50px; flex-shrink: 0; }
+    .contact-link-text { font-size: 14px; color: rgba(255,255,255,0.8); }
+
+    footer { background: var(--black); border-top: 1px solid #1a1f2e; padding: 24px 48px; display: flex; justify-content: space-between; align-items: center; }
+    .footer-name { font-family: 'Space Mono', monospace; font-size: 12px; color: rgba(255,255,255,0.3); }
+    .footer-school { font-size: 12px; color: rgba(255,255,255,0.3); }
+
+    .fade-up { opacity: 1; transform: none; }
+
+    @media (max-width: 900px) {
+      #home { grid-template-columns: 1fr; }
+      .hero-left { padding: 60px 32px; min-height: 60vh; }
+      .hero-name { font-size: 52px; }
+      .hero-right { padding: 60px 32px; }
+      .about-grid, .projects-grid, .goals-grid, .skills-grid, .contact-grid { grid-template-columns: 1fr; }
+      .section-inner { padding: 0 24px; }
+      nav { padding: 0 24px; }
+      .nav-links { gap: 16px; }
+      .exp-item { grid-template-columns: 1fr; gap: 16px; }
+      .resume-box { padding: 40px 24px; }
+      footer { flex-direction: column; gap: 8px; text-align: center; }
+      .hero-left::before { font-size: 160px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">ajay<span>.</span>m</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Work</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#goals">Goals</a></li>
+      <li><a href="#resume">Resume</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="mailto:amurugappan31@gatech.edu" style="color:var(--pink-dark); border:1.5px solid var(--pink-dark); padding:4px 12px;">amurugappan31@gatech.edu</a></li>
+    </ul>
+  </nav>
+
+  <section id="home">
+    <div class="hero-left">
+      <div class="hero-tag">Computer Engineering @ GT</div>
+      <h1 class="hero-name">Ajay<br>Murugappan</h1>
+      <p class="hero-sub">I build fast, reliable software. From interactive campus games to real-time AI vision systems, I turn complex problems into clean products.</p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn-primary">See My Work</a>
+        <a href="#contact" class="btn-secondary">Get In Touch</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="stat-grid">
+        <div class="stat-box pink">
+          <div class="stat-num">4+</div>
+          <div class="stat-label">Major Projects</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">8+</div>
+          <div class="stat-label">Technologies</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">40+</div>
+          <div class="stat-label">Code Reviews</div>
+        </div>
+        <div class="stat-box pink">
+          <div class="stat-num">2</div>
+          <div class="stat-label">Internships</div>
+        </div>
+      </div>
+      <div class="hero-links">
+        <a href="mailto:amurugappan31@gatech.edu" class="hero-link">
+          <div class="hero-link-icon">@</div>
+          amurugappan31@gatech.edu
+        </a>
+        <a href="https://linkedin.com/in/ajay-murugappan" target="_blank" class="hero-link">
+          <div class="hero-link-icon">LI</div>
+          linkedin.com/in/ajay-murugappan
+        </a>
+        <a href="https://github.com/ajaymuru26" target="_blank" class="hero-link">
+          <div class="hero-link-icon">GH</div>
+          github.com/ajaymuru26
+        </a>
+        <a href="tel:7705395717" class="hero-link">
+          <div class="hero-link-icon">#</div>
+          (770) 539-5717
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="section-inner">
+      <div class="section-label">01 / Who I Am</div>
+      <h2 class="section-title">About Me</h2>
+      <div class="about-grid fade-up">
+        <div class="about-text">
+          <p>Hi, I am <strong>Ajay Murugappan</strong>, a sophomore studying Computer Engineering at Georgia Tech. I grew up in Georgia and have always been drawn to building things that work well and look clean.</p>
+          <p>Outside of class, I am an <strong>Eagle Scout</strong>, which taught me how to lead, plan, and stay committed to long-term goals.</p>
+          <p>I care about software that performs. I like finding performance bottlenecks, writing clean code, and shipping products that real users enjoy. Whether it is a campus game or a computer vision system, I want the result to be fast and solid.</p>
+          <div class="tag-list">
+            <span class="tag">Full Stack</span>
+            <span class="tag">Computer Vision</span>
+            <span class="tag">System Design</span>
+            <span class="tag pink">Eagle Scout</span>
+            <span class="tag pink">Zell Miller Scholar</span>
+          </div>
+        </div>
+        <div class="about-details">
+          <div class="detail-row"><span class="detail-key">School</span><span class="detail-val">Georgia Institute of Technology</span></div>
+          <div class="detail-row"><span class="detail-key">Major</span><span class="detail-val">Computer Engineering (BS)</span></div>
+          <div class="detail-row"><span class="detail-key">Grad Year</span><span class="detail-val">May 2028</span></div>
+          <div class="detail-row"><span class="detail-key">Location</span><span class="detail-val">Atlanta, Georgia</span></div>
+          <div class="detail-row"><span class="detail-key">Focus</span><span class="detail-val">Software Engineering, AI Systems</span></div>
+          <div class="detail-row"><span class="detail-key">Status</span><span class="detail-val">Open to Summer 2026 Internships</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="section-inner">
+      <div class="section-label">02 / Where I Have Worked</div>
+      <h2 class="section-title">Experience</h2>
+      <div class="exp-list">
+        <div class="exp-item fade-up">
+          <div class="exp-meta">
+            <div class="exp-dot"></div>
+            <div class="exp-company">GTGuessr</div>
+            <div class="exp-date">Aug 2024 to Now</div>
+          </div>
+          <div class="exp-content">
+            <div class="exp-title">Full Stack Developer</div>
+            <ul class="exp-bullets">
+              <li>Built an interactive campus geography game using TypeScript, Node.js, React, and Express.js</li>
+              <li>Built a backend storage pipeline with Firebase to upload and serve 100+ campus location images</li>
+              <li>Cut bundle size by 35% and improved load times by 50% by refactoring 25+ React components with lazy loading</li>
+              <li>Led 40+ code reviews across an 8-member team, cutting bug reports by 60%</li>
+            </ul>
+          </div>
+        </div>
+        <div class="exp-item fade-up">
+          <div class="exp-meta">
+            <div class="exp-dot"></div>
+            <div class="exp-company">Bazar</div>
+            <div class="exp-date">May 2024 to Jul 2024</div>
+          </div>
+          <div class="exp-content">
+            <div class="exp-title">Software Engineer Intern</div>
+            <ul class="exp-bullets">
+              <li>Cut landing page load time by 30% by building 15+ responsive UI components with TypeScript, React, and Tailwind CSS</li>
+              <li>Increased page engagement by 25% and improved Core Web Vitals by 40% for 1,000+ weekly users</li>
+              <li>Cut design-to-development handoff time by 35% across 20+ pages by working closely with designers and engineers</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-inner">
+      <div class="section-label">03 / What I Have Built</div>
+      <h2 class="section-title">Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card fade-up">
+          <div class="project-num">01</div>
+          <div class="project-name">Driver Fatigue Detection System</div>
+          <div class="project-stack">Python / OpenCV / dlib / DeepFace</div>
+          <p class="project-desc">A real-time fatigue detection pipeline that tracks blink rate, PERCLOS, and microsleep events from a live webcam at 24+ FPS. It classifies driver alertness across 3 fatigue levels using a 7-point score.</p>
+          <span class="project-highlight">91% Accuracy</span>
+        </div>
+        <div class="project-card fade-up">
+          <div class="project-num">02</div>
+          <div class="project-name">2x2 Rubik's Cube Solver</div>
+          <div class="project-stack">Python / FastAPI / React / Three.js</div>
+          <p class="project-desc">Solves any scrambled cube in under 1ms by pre-computing all 3.7 million possible configurations into a lookup table. Includes a move analyzer that detects 20+ known speedcubing patterns and flags wasted moves.</p>
+          <span class="project-highlight">Under 1ms Solve</span>
+        </div>
+        <div class="project-card fade-up">
+          <div class="project-num">03</div>
+          <div class="project-name">VLMemory: Spatial Object Tracker</div>
+          <div class="project-stack">React / Node.js / Python / SQLite</div>
+          <p class="project-desc">A VLM-powered spatial memory system that tracks 100+ objects with 95% accuracy using the Gemini API. Streams camera and IMU data via WebRTC and runs VLM inference in under 200ms locally.</p>
+          <span class="project-highlight">95% Accuracy</span>
+        </div>
+        <div class="project-card fade-up">
+          <div class="project-num">04</div>
+          <div class="project-name">GTGuessr</div>
+          <div class="project-stack">TypeScript / React / Node.js / Firebase</div>
+          <p class="project-desc">An open-source Georgia Tech campus geography game. Players guess locations from 100+ real campus images. Built with a full game engine, backend image pipeline, and optimized React components.</p>
+          <span class="project-highlight">Open Source</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-inner">
+      <div class="section-label">04 / What I Know</div>
+      <h2 class="section-title">Skills</h2>
+      <div class="skills-grid fade-up">
+        <div class="skill-group">
+          <div class="skill-group-title">Languages</div>
+          <div class="skill-list">
+            <span class="skill-chip">Java</span><span class="skill-chip">Python</span><span class="skill-chip">C++</span>
+            <span class="skill-chip">JavaScript</span><span class="skill-chip">TypeScript</span><span class="skill-chip">SQL</span>
+            <span class="skill-chip">HTML</span><span class="skill-chip">CSS</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">Frameworks</div>
+          <div class="skill-list">
+            <span class="skill-chip">React</span><span class="skill-chip">Node.js</span><span class="skill-chip">Express.js</span>
+            <span class="skill-chip">Spring Boot</span><span class="skill-chip">FastAPI</span><span class="skill-chip">Tailwind CSS</span>
+            <span class="skill-chip">REST APIs</span><span class="skill-chip">GraphQL</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">Cloud and Tools</div>
+          <div class="skill-list">
+            <span class="skill-chip">AWS Lambda</span><span class="skill-chip">S3</span><span class="skill-chip">DynamoDB</span>
+            <span class="skill-chip">Docker</span><span class="skill-chip">Kubernetes</span><span class="skill-chip">Git</span>
+            <span class="skill-chip">CI/CD</span><span class="skill-chip">Jenkins</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">Core Concepts</div>
+          <div class="skill-list">
+            <span class="skill-chip">Data Structures</span><span class="skill-chip">Algorithms</span><span class="skill-chip">OOP</span>
+            <span class="skill-chip">System Design</span><span class="skill-chip">Microservices</span><span class="skill-chip">Distributed Systems</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">Developer Tools</div>
+          <div class="skill-list">
+            <span class="skill-chip">GitHub</span><span class="skill-chip">NPM</span><span class="skill-chip">Linux</span>
+            <span class="skill-chip">VS Code</span><span class="skill-chip">Postman</span><span class="skill-chip">Agile / Scrum</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">Soft Skills</div>
+          <div class="skill-list">
+            <span class="skill-chip">Code Review</span><span class="skill-chip">Team Leadership</span>
+            <span class="skill-chip">Cross-team Collab</span><span class="skill-chip">Communication</span>
+            <span class="skill-chip">Problem Solving</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="goals">
+    <div class="section-inner">
+      <div class="section-label">05 / Where I Am Headed</div>
+      <h2 class="section-title">Career Goals</h2>
+      <div class="goals-grid fade-up">
+        <div>
+          <p style="font-size:15px; font-weight:300; line-height:1.8; color:var(--gray); margin-bottom:32px;">My goal is to become a strong software engineer who builds systems that are both smart and fast. I want to work on AI-driven products that help people in practical ways. Long-term, I hope to lead engineering teams or start a company in the AI space.</p>
+          <div class="goals-timeline">
+            <div class="timeline-item">
+              <div class="timeline-left"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
+              <div>
+                <div class="timeline-year">Now (2025 to 2026)</div>
+                <div class="timeline-text">Build strong fundamentals in systems and AI. Contribute to open-source projects. Land a top software engineering internship.</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-left"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
+              <div>
+                <div class="timeline-year">Junior Year (2026 to 2028)</div>
+                <div class="timeline-text">Complete a research project in ML or computer vision. Take advanced courses in distributed systems. Apply to top companies for full-time roles.</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-left"><div class="timeline-dot"></div></div>
+              <div>
+                <div class="timeline-year">After Graduation (2028+)</div>
+                <div class="timeline-text">Join a fast-growing AI company or start my own venture. Build products that solve hard problems at scale.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="goals-steps">
+          <div class="step-item"><div class="step-num">1</div><div class="step-text">Get internship experience at companies that build real AI products and scale large systems</div></div>
+          <div class="step-item"><div class="step-num">2</div><div class="step-text">Take advanced GT courses in machine learning, computer architecture, and distributed systems</div></div>
+          <div class="step-item"><div class="step-num">3</div><div class="step-text">Join a research lab at GT to explore applied ML or computer vision with a professor</div></div>
+          <div class="step-item"><div class="step-num">4</div><div class="step-text">Grow open-source projects and build a public portfolio that shows what I can ship</div></div>
+          <div class="step-item"><div class="step-num">5</div><div class="step-text">Network at GT career fairs and through LinkedIn to connect with engineers and recruiters</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="resume">
+    <div class="section-inner">
+      <div class="section-label">06 / Download</div>
+      <h2 class="section-title">Resume</h2>
+      <div class="resume-box fade-up">
+        <div class="resume-icon">PDF</div>
+        <h3>Ajay Murugappan</h3>
+        <p>My full resume covers my education, work experience, projects, and technical skills. Updated for the 2026 recruiting season.</p>
+        <a href="Murugappan_Ajay_Resume.pdf" download class="btn-primary">Download Resume (PDF)</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="section-inner">
+      <div class="section-label">07 / Reach Out</div>
+      <h2 class="section-title">Contact</h2>
+      <div class="contact-grid fade-up">
+        <div>
+          <p class="contact-text">I am always open to talking about internships, research, or cool projects. If you have something in mind, feel free to reach out. I try to reply within a day or two.</p>
+        </div>
+        <div class="contact-links">
+          <a href="mailto:amurugappan31@gatech.edu" class="contact-link">
+            <span class="contact-link-icon">EMAIL</span>
+            <span class="contact-link-text">amurugappan31@gatech.edu</span>
+          </a>
+          <a href="tel:7705395717" class="contact-link">
+            <span class="contact-link-icon">PHONE</span>
+            <span class="contact-link-text">(770) 539-5717</span>
+          </a>
+          <a href="https://linkedin.com/in/ajay-murugappan" target="_blank" class="contact-link">
+            <span class="contact-link-icon">LI</span>
+            <span class="contact-link-text">linkedin.com/in/ajay-murugappan</span>
+          </a>
+          <a href="https://github.com/ajaymuru26" target="_blank" class="contact-link">
+            <span class="contact-link-icon">GH</span>
+            <span class="contact-link-text">github.com/ajaymuru26</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-name">Ajay Murugappan</div>
+    <div class="footer-school">Georgia Institute of Technology &bull; Computer Engineering &bull; Class of 2028</div>
+  </footer>
+
+  <script data-cfasync="false" src
