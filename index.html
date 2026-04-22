@@ -187,7 +187,7 @@
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Work</a></li>
-      <li><a href="#projects">Projects</a></li>
+      <li><a href="#discovery">Discovery</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#goals">Goals</a></li>
       <li><a href="#resume">Resume</a></li>
@@ -355,9 +355,104 @@
     </div>
   </section>
 
+  <section id="discovery" style="background: var(--white); border-top: 2px solid var(--blue);">
+    <div class="section-inner">
+      <div class="section-label">04 / ECE 1100 Discovery Project</div>
+      <h2 class="section-title">Velocity Meter</h2>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:60px; margin-bottom:60px;">
+        <div>
+          <p style="font-family:'Space Mono',monospace; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--pink-dark); margin-bottom:12px;">The Problem</p>
+          <p style="font-size:15px; font-weight:300; line-height:1.8; color:var(--black); margin-bottom:24px;">How do you measure the velocity of a moving object using affordable hardware and basic physics?</p>
+          <p style="font-family:'Space Mono',monospace; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--pink-dark); margin-bottom:12px;">The Original Idea</p>
+          <p style="font-size:15px; font-weight:300; line-height:1.8; color:var(--black);">My original idea was to use IR beam sensors, a Raspberry Pi, and Python. Two sensors placed 10 inches apart would measure the time it takes for a toy car to pass through both gates, then calculate velocity using v = (d₂-d₁)/(t₂-t₁).</p>
+        </div>
+        <div style="background:var(--light-gray); border:2px solid var(--border); padding:32px;">
+          <p style="font-family:'Space Mono',monospace; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--blue-deep); margin-bottom:20px;">Hardware Used</p>
+          <div class="detail-row"><span class="detail-key">MCU</span><span class="detail-val">Arduino Uno</span></div>
+          <div class="detail-row"><span class="detail-key">Sensors</span><span class="detail-val">2× HC-SR04 Ultrasonic</span></div>
+          <div class="detail-row"><span class="detail-key">Display</span><span class="detail-val">HT16K33 4-Digit 7-Seg (I2C)</span></div>
+          <div class="detail-row"><span class="detail-key">LEDs</span><span class="detail-val">2× indicator LEDs</span></div>
+          <div class="detail-row"><span class="detail-key">Language</span><span class="detail-val">Arduino C++</span></div>
+          <div class="detail-row"><span class="detail-key">Protocol</span><span class="detail-val">I2C (SDA/SCL)</span></div>
+        </div>
+      </div>
+
+      <div style="margin-bottom:60px;">
+        <p style="font-family:'Space Mono',monospace; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--pink-dark); margin-bottom:20px;">The Process</p>
+        <!-- 3-column grid — empty 4th box removed -->
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:2px;">
+          <div style="background:var(--blue-deep); padding:28px 24px;">
+            <div style="font-family:'Playfair Display',serif; font-size:36px; font-weight:900; color:var(--blue); line-height:1; margin-bottom:12px;">1</div>
+            <div style="font-size:13px; font-weight:500; color:white; margin-bottom:8px;">Adapted Parts</div>
+            <div style="font-size:12px; font-weight:300; color:rgba(255,255,255,0.7); line-height:1.6;">Switched from IR sensors and Raspberry Pi to HC-SR04 ultrasonic sensors and Arduino when original parts were unavailable.</div>
+          </div>
+          <div style="background:var(--blue-deep); padding:28px 24px;">
+            <div style="font-family:'Playfair Display',serif; font-size:36px; font-weight:900; color:var(--blue); line-height:1; margin-bottom:12px;">2</div>
+            <div style="font-size:13px; font-weight:500; color:white; margin-bottom:8px;">Sensor Testing</div>
+            <div style="font-size:12px; font-weight:300; color:rgba(255,255,255,0.7); line-height:1.6;">Got both sensors printing live distances to Serial Monitor. Debugged Sensor 2 reading 400cm, traced it to a loose wire on the breadboard.</div>
+          </div>
+          <div style="background:var(--blue-deep); padding:28px 24px;">
+            <div style="font-family:'Playfair Display',serif; font-size:36px; font-weight:900; color:var(--blue); line-height:1; margin-bottom:12px;">3</div>
+            <div style="font-size:13px; font-weight:500; color:white; margin-bottom:8px;">Added LEDs</div>
+            <div style="font-size:12px; font-weight:300; color:rgba(255,255,255,0.7); line-height:1.6;">Wired indicator LEDs to pins 8 and 12. LEDs blink on while an object is detected and switch off when clear.</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:60px; margin-bottom:60px;">
+        <div>
+          <p style="font-family:'Space Mono',monospace; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--pink-dark); margin-bottom:20px;">Successes and Failures</p>
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <div style="display:flex; gap:16px; align-items:flex-start; padding:16px; background:var(--light-gray); border-left:4px solid var(--blue-dark);">
+              <span style="font-family:'Space Mono',monospace; font-size:10px; font-weight:700; color:var(--blue-deep); min-width:60px; padding-top:2px;">SUCCESS</span>
+              <span style="font-size:13px; font-weight:300; line-height:1.6;">Got accurate velocity readings with two sensors placed 2.5 inches apart</span>
+            </div>
+            <div style="display:flex; gap:16px; align-items:flex-start; padding:16px; background:var(--light-gray); border-left:4px solid var(--blue-dark);">
+              <span style="font-family:'Space Mono',monospace; font-size:10px; font-weight:700; color:var(--blue-deep); min-width:60px; padding-top:2px;">SUCCESS</span>
+              <span style="font-size:13px; font-weight:300; line-height:1.6;">Simplified display wiring from 10 pins down to 4 using I2C protocol</span>
+            </div>
+            <div style="display:flex; gap:16px; align-items:flex-start; padding:16px; background:var(--light-gray); border-left:4px solid var(--pink-dark);">
+              <span style="font-family:'Space Mono',monospace; font-size:10px; font-weight:700; color:var(--pink-deep); min-width:60px; padding-top:2px;">FAILURE</span>
+              <span style="font-size:13px; font-weight:300; line-height:1.6;">Original IR sensor and Raspberry Pi plan had to be scrapped when parts were unavailable</span>
+            </div>
+            <div style="display:flex; gap:16px; align-items:flex-start; padding:16px; background:var(--light-gray); border-left:4px solid var(--pink-dark);">
+              <span style="font-family:'Space Mono',monospace; font-size:10px; font-weight:700; color:var(--pink-deep); min-width:60px; padding-top:2px;">FAILURE</span>
+              <span style="font-size:13px; font-weight:300; line-height:1.6;">Sensor 2 kept returning 400cm timeout and too took debugging to find the loose breadboard wire</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p style="font-family:'Space Mono',monospace; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--pink-dark); margin-bottom:20px;">ECE Skills Gained</p>
+          <div class="tag-list">
+            <span class="tag">Embedded Systems</span>
+            <span class="tag">Arduino C++</span>
+            <span class="tag">I2C Protocol</span>
+            <span class="tag">Sensor Integration</span>
+            <span class="tag">Circuit Wiring</span>
+            <span class="tag">Hardware Debugging</span>
+            <span class="tag pink">State Machines</span>
+            <span class="tag pink">Breadboard Prototyping</span>
+          </div>
+          <p style="font-size:14px; font-weight:300; line-height:1.8; color:var(--black); margin-top:24px;">This project gave me hands-on experience with embedded systems and hardware-software integration — a side of computer engineering I had never touched before. Building something physical that actually works and produces real measurements was a completely different experience from software development, and it gave me a much better appreciation for the hardware layer that software runs on.</p>
+        </div>
+      </div>
+
+      <div style="background:var(--light-gray); border:2px solid var(--border); padding:32px; text-align:center;">
+        <p style="font-family:'Space Mono',monospace; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--blue-deep); margin-bottom:16px;">Project Demo</p>
+        <iframe width="100%" height="400" style="max-width:700px; border:3px solid var(--blue-dark); display:block; margin:0 auto;"
+          src="https://www.youtube.com/embed/NXA5IAmQL6A"
+          title="Velocity Meter Demo"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </section>
+
   <section id="skills">
     <div class="section-inner">
-      <div class="section-label">04 / What I Know</div>
+      <div class="section-label">05 / What I Know</div>
       <h2 class="section-title">Skills</h2>
       <div class="skills-grid fade-up">
         <div class="skill-group">
@@ -486,4 +581,19 @@
             <span class="contact-link-icon">LI</span>
             <span class="contact-link-text">linkedin.com/in/ajay-murugappan</span>
           </a>
-          <a href="https://github.com/ajaymuru26" target="_blank" class="co
+          <a href="https://github.com/ajaymuru26" target="_blank" class="contact-link">
+            <span class="contact-link-icon">GH</span>
+            <span class="contact-link-text">github.com/ajaymuru26</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-name">ajay.m</div>
+    <div class="footer-school">Georgia Institute of Technology · Computer Engineering · 2027</div>
+  </footer>
+
+</body>
+</html>
